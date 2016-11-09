@@ -19,8 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('nickname');
+            $table->string('img');
             $table->integer('function_id');
-            $table->date('Birthday');
+            $table->date('birthday');
             $table->integer('gsm');
             $table->string('callsign');
             $table->string('AAB_Lidnummer');

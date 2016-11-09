@@ -10,4 +10,9 @@ class geweren extends Model
         'id', 'user_id','omschrijving','name','owner',
         'user_id','classe_id','img'
     ];
+
+    public function scopeUserAll($query,$id)
+    {
+        return $query->where('user_id',$id);
+    }
 }
