@@ -12,6 +12,14 @@ class MemberSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            'name' => 'Jonas Van Reeth',
+            'email' => 'jonasvanreeth@gmail.com',
+            'password' => bcrypt('test1234'),
+            'callsign' => 'json',
+            'nickname' => 'jsonvr',
+        ]);
+
+        DB::table('users')->insert([
             'name' => str_random(10),
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),

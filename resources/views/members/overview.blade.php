@@ -15,6 +15,7 @@
                     naam: {{ $user->name }} <br>
                     nickname: {{$user->nickname}} <br>
                     callsign: {{$user->callsign}} <br>
+                    function:
                 </div>
                 </a>
             @endforeach

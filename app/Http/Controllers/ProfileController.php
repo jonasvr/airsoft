@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\classe;
 use App\geweren;
+use App\SubClass;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -21,14 +23,25 @@ class ProfileController extends Controller
     protected $geweer;
 
     /**
+     * @var classe
+     */
+    protected $class;
+
+    /**
+     * @var SubClass
+     */
+    protected $subclass;
+    /**
      * ProfileController constructor.
      * @param User $user
      * @param geweren $geweer
      */
-    public function __construct(User $user, geweren $geweer)
+    public function __construct(User $user, geweren $geweer, classe $classe, SubClass $subClass)
     {
         $this->user = $user;
         $this->geweer = $geweer;
+        $this->class = $classe;
+        $this->subclass = $subClass;
     }
 
     /**
@@ -36,7 +49,7 @@ class ProfileController extends Controller
      */
     public function main()
     {
-        $geweren = $this->geweer->UserAll(Auth::id())->get();
+        $geweren = $this->geweer->UserAll(Auth::id())->SubClasses()->get();
         $data = [
             'geweren' => $geweren,
             'user' => Auth::user(),
@@ -69,7 +82,17 @@ class ProfileController extends Controller
 
     public function getAdd()
     {
-        return view('profile.functions.addMaterial');
+        $cla = $this->class->all();
+        $subs = $this->subclass->all();
+        foreach ($subs as $key => $sub){
+            $types[$sub['id']] = $cla[$sub['class_id']-1]['type'] . " - " . $sub['type'];
+        }
+
+        $data = [
+            'subclasses' => $types,
+        ];
+
+        return view('profile.functions.addMaterial',$data);
     }
 
     /**
@@ -81,8 +104,7 @@ class ProfileController extends Controller
         $data = $request->all();
         unset($data['_token']);
         $data['user_id'] = Auth::id();
-        $this->geweer->create($data);
-
+        $new = $this->geweer->create($data);
         return redirect()->route('profile');
     }
 }

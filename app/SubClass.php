@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class classe extends Model
+class SubClass extends Model
 {
     protected $fillable = [
-        'id', 'type'
+        'id', 'class_id', 'img','type'
     ];
 }

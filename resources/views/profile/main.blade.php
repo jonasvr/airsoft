@@ -45,7 +45,7 @@
                 <img src="{{asset("img/gun.jpg")}}" alt=""><br>
                 naam: {{$geweer->name}} <br>
                 omschrijving: {{$geweer->omschrijving}} <br>
-                classe: {{$geweer->classe_id}}
+                classe: {{$geweer->type}}
             </div>
             @endforeach
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-{{--this is add guns!--}}
+{{--this is add armor!--}}
 
 @section('content')
     <div class="container">
@@ -34,13 +34,25 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group {{ $errors->has('subclasse_id') ? ' has-error' : '' }}">
+                <div class="form-group {{ $errors->has('classe_id') ? ' has-error' : '' }}">
                     {{Form::label('classe_id', 'Class',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
-                        {{Form::select('subclasse_id', $subclasses,"",["class" => "form-control"])}}
-                        @if ($errors->has('subclasse_id'))
+                        {{Form::select('classe_id', [1=>1,2=>2,3=>3,4=>4],"",["class" => "form-control"])}}
+                        @if ($errors->has('classe_id'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('subclasse_id') }}</strong>
+                                        <strong>{{ $errors->first('classe_id') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+                </div>
+                {{-- main wapon  & side arm --}}
+                <div class="form-group {{ $errors->has('classe_id') ? ' has-error' : '' }}">
+                    {{Form::label('classe_id', 'Class',["class" => "control-label"])}}
+                    <div class="col-md-offset-1 col-md-11">
+                        {{Form::select('classe_id', [1=>1,2=>2,3=>3,4=>4],"",["class" => "form-control"])}}
+                        @if ($errors->has('classe_id'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('classe_id') }}</strong>
                                     </span>
                         @endif
                     </div>
