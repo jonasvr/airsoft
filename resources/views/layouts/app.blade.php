@@ -25,6 +25,11 @@
 <body>
     <div id="app">
         @include('layouts.partials.nav')
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         @yield('content')
     </div>
 

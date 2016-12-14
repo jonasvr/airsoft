@@ -48,13 +48,13 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group {{ $errors->has('gsm') ? ' has-error' : '' }}">
+                <div class="form-group {{ $errors->has('birthday') ? ' has-error' : '' }}">
                     {{Form::label('birthday', 'Birthday',["class" => "control-label"])}}
                     <div name="birthday" class="col-md-offset-1 col-md-11">
-                        {!! Form::date('Birthday','', ['class' => 'form-control']) !!}
-                        @if ($errors->has('Birthday'))
+                        {!! Form::date('birthday',Auth::user()->birthday ,['class' => 'form-control']) !!}
+                        @if ($errors->has('birthday'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('Birthday') }}</strong>
+                                        <strong>{{ $errors->first('birthday') }}</strong>
                                     </span>
                         @endif
                     </div>

@@ -21,4 +21,11 @@ class geweren extends Model
     {
         return $query->join('sub_classes', 'gewerens.subclasse_id','=','sub_classes.id');
     }
+
+    public function scopeArmorType($query,$id)
+    {
+        return $query->join('sub_classes', 'gewerens.subclasse_id','=','sub_classes.id')
+            ->join('classes', 'sub_classes.id','=','classes.id')
+            ->where('classes.id','=',$id);
+    }
 }

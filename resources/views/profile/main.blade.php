@@ -5,49 +5,58 @@
         <div class="row jumbotron">
             <div class="row">
                 <div class="col-md-3">
-                    <h2>info</h2>
+                    <h2>
+                    @if($user->id == Auth::id())
+                        <a href="{{route('editprofile')}}">
+                            <i class="fa fa-cog text-right" aria-hidden="true"></i>
+                        </a>
+                    @endif
+                    Info</h2>
                 </div>
                 <div class="col-md-offset-8 col-md-1">
-                    @if($user->id == Auth::id())
-                    <a href="{{route('editprofile')}}">
-                        <i class="fa fa-cog text-right" aria-hidden="true"></i>
-                    </a>
-                    @endif
+
                 </div>
             </div>
             <div class="col-md-4">
-                    <img src="{{asset('img/no-pic.png')}}" alt="">
+                    <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
+                <label for="name">naam:</label> <p id="name">{{$user->name}}</p>
+                <label for="nickname">nickname:</label> <p id="nickname">{{$user->nickname}}</p>
+                <label for="callsign">callsign:</label> <p id="callsign">{{$user->callsign}}</p>
+                <label for="gsm">phonenumber:</label> <p id="gsm">{{$user->gsm}}</p>
+                <label for="birthday">birthday:</label> <p id="birthday">{{$user->birthday}}</p>
+
             </div>
             <div class="col-md-8">
-                naam: {{$user->name}}<br>
-                nickname: {{$user->nickname}} <br>
-                callsign:{{$user->callsign}} <br>
-                phonenumber:{{$user->gsm}} <br>
-                birthday: {{$user->birthday}}<br>
-            </div>
-        </div>
-        <div class="row jumbotron">
-            <div class="row">
-                <div class="col-md-3">
-                    <h2>materiaal</h2>
-                </div>
-                <div class="col-md-offset-8 col-md-1">
-                    @if($user->id == Auth::id())
+                <a href="{{route('addMaterial')}}"> <span class="fa fa-plus"></span></a>
+                <div class="row">
+                    <div class="col-md-4 margin-bottom-10">
+                        <a href="{{route('specific', ['id' => 1])}}">
+                            <img class="img-responsive" src="{{asset('img/gear-logo/helmet.jpg')}}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-4 margin-bottom-10">
+                        <a href="{{route('specific', ['id' => 1])}}">
+                        <img class="img-responsive" src="{{asset('img/gear-logo/body.jpg')}}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-4 margin-bottom-10">
+                        <a href="{{route('specific', ['id' => 1])}}">
+                        <img class="img-responsive" src="{{asset('img/gear-logo/weapon.jpg')}}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-offset-2 col-md-4 margin-bottom-10">
+                        <a href="{{route('specific', ['id' => 1])}}">
+                        <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-4 margin-bottom-10">
+                        <a href="{{route('specific', ['id' => 1])}}">
+                        <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
+                        </a>
+                    </div>
 
-                    <a href="{{route('addMaterial')}}">
-                        <i class="fa fa-plus text-right" aria-hidden="true"></i>
-                    </a>
-                    @endif
                 </div>
             </div>
-            @foreach($geweren as $index => $geweer)
-            <div class="col-md-4 text-center margin-bottom-10">
-                <img src="{{asset("img/gun.jpg")}}" alt=""><br>
-                naam: {{$geweer->name}} <br>
-                omschrijving: {{$geweer->omschrijving}} <br>
-                classe: {{$geweer->type}}
-            </div>
-            @endforeach
         </div>
     </div>
 

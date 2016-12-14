@@ -13,7 +13,7 @@ class ArmorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class ArmorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "name" => "required",
+            "omschrijving" => "required",
+            "subclasse_id" => "required",
         ];
     }
 }
