@@ -48,9 +48,13 @@ class ProfileController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getEdit()
+    public function getEdit($id)
     {
-        return view('profile.functions.edit');
+        $user = $this->user->find($id);
+        $data = [
+            'user' => $user,
+        ];
+        return view('profile.functions.edit', $data);
     }
 
     /**

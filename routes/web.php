@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/', ['as' => 'profile', 'uses' => 'ProfileController@main']);
-    Route::get('/edit', ['as' => 'editprofile', 'uses' => 'ProfileController@getEdit']);
+    Route::get('/edit/{id}', ['as' => 'editprofile', 'uses' => 'ProfileController@getEdit']);
     Route::post('/postEdit', ['as' => 'postedit', 'uses' => 'ProfileController@postEdit']);
     Route::get('/armor/add', ['as' => 'addMaterial', 'uses' => 'ArmorController@getAdd']);
     Route::post('/armor/postAdd', ['as' => 'postAdd', 'uses' => 'ArmorController@postAdd']);

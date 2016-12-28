@@ -15,10 +15,11 @@
             </div>
             <div class="col-md-8">
                 {{Form::open(array('url' => route('postedit'), 'method' => 'POST', "class" => "form-horizontal"))}}
-                <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+                @if($user->id == Auth::user()->id)
+                            <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                     {{Form::label('name', 'Naam',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
-                        {{Form::text('name',Auth::user()->name,["class" => "form-control"])}}
+                        {{Form::text('name',$user->name,["class" => "form-control"])}}
                         @if ($errors->has('name'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -29,7 +30,7 @@
                  <div class="form-group {{ $errors->has('nickname') ? ' has-error' : '' }}">
                      {{Form::label('nickname', 'Nickname',["class" => "control-label"])}}
                      <div class="col-md-offset-1 col-md-11">
-                     {{Form::text('nickname',Auth::user()->nickname,["class" => "form-control"])}}
+                     {{Form::text('nickname',$user->nickname,["class" => "form-control"])}}
                          @if ($errors->has('nickname'))
                              <span class="help-block">
                                         <strong>{{ $errors->first('nickname') }}</strong>
@@ -40,7 +41,7 @@
                 <div class="form-group {{ $errors->has('callsign') ? ' has-error' : '' }}">
                     {{Form::label('callsign', 'Callsign',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
-                    {{Form::text('callsign',Auth::user()->callsign,["class" => "form-control"])}}
+                    {{Form::text('callsign',$user->callsign,["class" => "form-control"])}}
                         @if ($errors->has('callsign'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('callsign') }}</strong>
@@ -51,7 +52,7 @@
                 <div class="form-group {{ $errors->has('birthday') ? ' has-error' : '' }}">
                     {{Form::label('birthday', 'Birthday',["class" => "control-label"])}}
                     <div name="birthday" class="col-md-offset-1 col-md-11">
-                        {!! Form::date('birthday',Auth::user()->birthday ,['class' => 'form-control']) !!}
+                        {!! Form::date('birthday',$user->birthday ,['class' => 'form-control']) !!}
                         @if ($errors->has('birthday'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('birthday') }}</strong>
@@ -62,7 +63,7 @@
                 <div class="form-group {{ $errors->has('gsm') ? ' has-error' : '' }}">
                     {{Form::label('gsm', 'gsm',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
-                        {{Form::text('gsm',Auth::user()->gsm,["class" => "form-control"])}}
+                        {{Form::text('gsm',$user->gsm,["class" => "form-control"])}}
                         @if ($errors->has('gsm'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('gsm') }}</strong>
@@ -70,6 +71,33 @@
                         @endif
                     </div>
                 </div>
+                @endif
+                @if(Auth::user()->function_id == 1)
+
+                        <div class="form-group {{ $errors->has('aansluiting') ? ' has-error' : '' }}">
+                            {{Form::label('aansluiting', 'aansluiting',["class" => "control-label"])}}
+                            <div class="col-md-offset-1 col-md-11">
+                                {{Form::text('aansluiting',$user->aansluiting,["class" => "form-control"])}}
+                                @if ($errors->has('aansluiting'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('aansluiting') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group {{ $errors->has('AAB_Lidnummer') ? ' has-error' : '' }}">
+                            {{Form::label('AAB_Lidnummer', 'AAB_Lidnummer',["class" => "control-label"])}}
+                            <div class="col-md-offset-1 col-md-11">
+                                {{Form::text('AAB_Lidnummer',$user->AAB_Lidnummer,["class" => "form-control"])}}
+                                @if ($errors->has('AAB_Lidnummer'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('AAB_Lidnummer') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                @endif
+
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-11">
                         <button type="submit" class="btn btn-default">update</button>
