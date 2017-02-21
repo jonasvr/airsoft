@@ -11,11 +11,6 @@
                             <i class="fa fa-cog text-right" aria-hidden="true"></i>
                         </a>
                     @endif
-                    @if(Auth::user()->function_id == 1)
-                        <a href="{{route('editprofile',['id'=>$user['id']])}}">
-                            <i class="fa fa-pencil text-right" aria-hidden="true"></i>
-                        </a>
-                    @endif
                     Info</h2>
 
                     <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
@@ -39,22 +34,22 @@
                             </a>
                         </div>
                         <div class="col-md-4 margin-bottom-10">
-                            <a href="{{route('specific', ['id' => 1])}}">
+                            <a href="{{route('specific', ['id' => 2])}}">
                                 <img class="img-responsive" src="{{asset('img/gear-logo/body.jpg')}}" alt="">
                             </a>
                         </div>
                         <div class="col-md-4 margin-bottom-10">
-                            <a href="{{route('specific', ['id' => 1])}}">
+                            <a href="{{route('specific', ['id' => 3])}}">
                                 <img class="img-responsive" src="{{asset('img/gear-logo/weapon.jpg')}}" alt="">
                             </a>
                         </div>
                         <div class="col-md-offset-2 col-md-4 margin-bottom-10">
-                            <a href="{{route('specific', ['id' => 1])}}">
+                            <a href="{{route('specific', ['id' => 4])}}">
                                 <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
                             </a>
                         </div>
                         <div class="col-md-4 margin-bottom-10">
-                            <a href="{{route('specific', ['id' => 1])}}">
+                            <a href="{{route('specific', ['id' => 5])}}">
                                 <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
                             </a>
                         </div>

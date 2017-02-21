@@ -37,3 +37,9 @@ Route::group(['prefix' => 'members'],function(){
     Route::get('/profile/{id}', ['as' => 'getMember', 'uses' => 'MemberController@get']);
 
 });
+
+Route::group(['prefix' => 'admin'],function(){
+    Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@overview']);
+//    Route::get('/profile/{id}', ['as' => 'getMember', 'uses' => 'MemberController@get']);
+
+});

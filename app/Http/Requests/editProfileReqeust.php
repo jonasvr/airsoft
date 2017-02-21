@@ -24,11 +24,12 @@ class editProfileReqeust extends FormRequest
     public function rules()
     {
         return [
-//            "name" => "",
-//            "nickname" => "required|unique:users",
-//            "callsign" => "required|unique:users",
-//            "birthday" => "required",
-//            "gsm" => "required"
+            "name" => "required",
+            "nickname" => "required",
+            "callsign" => "required",
+            "birthday" => "required",
+            "gsm" => "required",
+            'img' => 'mimes:jpeg,jpg|max:10000'
         ];
     }
 }

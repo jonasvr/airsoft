@@ -15,7 +15,6 @@
             </div>
             <div class="col-md-8">
                 {{Form::open(array('url' => route('postedit'), 'method' => 'POST', "class" => "form-horizontal"))}}
-                @if($user->id == Auth::user()->id)
                             <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                     {{Form::label('name', 'Naam',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
@@ -71,7 +70,17 @@
                         @endif
                     </div>
                 </div>
-                @endif
+                <div class="form-group {{ $errors->has('img') ? ' has-error' : '' }}">
+                    {{Form::label('img', 'img',["class" => "control-label"])}}
+                    <div class="col-md-offset-1 col-md-11">
+                        {{Form::file('img',["class" => "form-control"])}}
+                        @if ($errors->has('img'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('img') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
                 @if(Auth::user()->function_id == 1)
 
                         <div class="form-group {{ $errors->has('aansluiting') ? ' has-error' : '' }}">

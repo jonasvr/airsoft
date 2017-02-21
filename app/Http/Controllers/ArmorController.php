@@ -68,7 +68,7 @@ class ArmorController extends Controller
         $data = $request->all();
         unset($data['_token']);
         $data['user_id'] = Auth::id();
-        $new = $this->geweer->create($data);
+        $this->geweer->create($data);
         return redirect()->route('profile')->with('success', 'Armor updated!');
     }
 
