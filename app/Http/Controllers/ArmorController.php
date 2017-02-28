@@ -44,16 +44,11 @@ class ArmorController extends Controller
         $this->subclass = $subClass;
     }
 
-    public function getAdd()
+    public function create()
     {
-        $cla = $this->class->all();
-        $subs = $this->subclass->all();
-        foreach ($subs as $key => $sub){
-            $types[$sub['id']] = $cla[$sub['class_id']-1]['type'] . " - " . $sub['type'];
-        }
-
         $data = [
-            'subclasses' => $types,
+            'classes' => $this->DropPrep( $this->class->all() ),
+            'subclasses' => $this->DropPrep( $this->subclass->all() ),
         ];
 
         return view('profile.functions.addMaterial',$data);
@@ -63,7 +58,7 @@ class ArmorController extends Controller
      * @param ArmorRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postAdd(ArmorRequest $request)
+    public function add(ArmorRequest $request)
     {
         $data = $request->all();
         unset($data['_token']);
@@ -72,6 +67,10 @@ class ArmorController extends Controller
         return redirect()->route('profile')->with('success', 'Armor updated!');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getArmor($id)
     {
         $armor = $this->geweer->ArmorType($id)->get();
@@ -79,10 +78,43 @@ class ArmorController extends Controller
           'armor' => $armor
         ];
 
-
         return view('profile.armor.overview',$data);
+    }
 
 
+    public function edit($id)
+    {
+        $data = [
+                'geweer' => $this->geweer->find($id),
+                'classes' => $this->DropPrep( $this->class->all() ),
+                'subclasses' => $this->DropPrep( $this->subclass->all() ),
+            ];
 
+        return view('profile.functions.editMaterial', $data);
+    }
+
+    public function update(ArmorRequest $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        unset($data['id']);
+        $this->geweer->find($id)->update($data);
+
+        $data = [
+            'armor' => $this->geweer->find($id),
+        ];
+
+
+        return view('profile.armor.armor',$data);
+    }
+
+
+    public function DropPrep($classes)
+    {
+        foreach ($classes as $key => $class){
+            $classes[$key] = [$class->id => $class->type];
+        }
+
+        return $classes;
     }
 }

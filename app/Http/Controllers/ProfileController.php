@@ -65,9 +65,11 @@ class ProfileController extends Controller
     {
         $data = $request->all();
         unset($data['_token']);
-        $img = $data['img'];
-        unset($data['img']);
-        $this->user->where('id',Auth::id())->update($data);
+        if (isset($data['img'])){
+            $img = $data['img'];
+            unset($data['img']);
+        }
+        $this->user->where('id',$data['id'])->update($data);
 
         if(Auth::user()->function_id == 1){
             $redirect = 'admin';

@@ -11,11 +11,12 @@
                 </div>
             </div>
             <div class="col-md-offset-2 col-md-8">
-                {{Form::open(array('url' => route('postAdd'), 'method' => 'POST', "class" => "form-horizontal"))}}
+                {{Form::open(array('url' => route('update-armor'), 'method' => 'POST', "class" => "form-horizontal"))}}
+                {{form::hidden('id',$geweer->id)}}
                 <div class="form-group {{ $errors->has('classe_id') ? ' has-error' : '' }}">
                     {{Form::label('classe_id', 'merk',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
-                        {{Form::select('classe_id', $classes,"",["class" => "form-control"])}}
+                        {{Form::select('classe_id', $classes,$geweer->classe,["class" => "form-control"])}}
                         @if ($errors->has('classe_id'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('classe_id') }}</strong>
@@ -26,7 +27,7 @@
                 <div class="form-group {{ $errors->has('subclasse_id') ? ' has-error' : '' }}">
                     {{Form::label('classe_id', 'line',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
-                        {{Form::select('subclasse_id', $subclasses,"",["class" => "form-control"])}}
+                        {{Form::select('subclasse_id', $subclasses,$geweer->subclasse_id,["class" => "form-control"])}}
                         @if ($errors->has('subclasse_id'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('subclasse_id') }}</strong>
@@ -37,7 +38,7 @@
                 <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                     {{Form::label('name', 'Naam',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
-                        {{Form::text('name', old('name') ,["class" => "form-control"])}}
+                        {{Form::text('name', old('name')!= null ? old('name') : $geweer->name ,["class" => "form-control"])}}
                         @if ($errors->has('name'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -48,7 +49,7 @@
                 <div class="form-group {{ $errors->has('omschrijving') ? ' has-error' : '' }}">
                     {{Form::label('omschrijving', 'description',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
-                        {{Form::textarea('omschrijving',old('omschrijving'),["class" => "form-control"])}}
+                        {{Form::textarea('omschrijving',old('omschrijving') != null ? old('omschrijving') :  $geweer->omschrijving,["class" => "form-control"])}}
                         @if ($errors->has('name'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>

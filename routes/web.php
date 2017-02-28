@@ -22,24 +22,24 @@ Route::group(['prefix' => 'profile'], function () {
     Route::get('/', ['as' => 'profile', 'uses' => 'ProfileController@main']);
     Route::get('/edit/{id}', ['as' => 'editprofile', 'uses' => 'ProfileController@getEdit']);
     Route::post('/postEdit', ['as' => 'postedit', 'uses' => 'ProfileController@postEdit']);
-    Route::get('/armor/add', ['as' => 'addMaterial', 'uses' => 'ArmorController@getAdd']);
-    Route::post('/armor/postAdd', ['as' => 'postAdd', 'uses' => 'ArmorController@postAdd']);
 });
 
 Route::group(['prefix' => 'armor'], function () {
-    Route::get('add', ['as' => 'addMaterial', 'uses' => 'ArmorController@getAdd']);
-    Route::post('postAdd', ['as' => 'postAdd', 'uses' => 'ArmorController@postAdd']);
+    Route::get('create', ['as' => 'addMaterial', 'uses' => 'ArmorController@create']);
+    Route::post('add', ['as' => 'postAdd', 'uses' => 'ArmorController@add']);
     Route::get('specific/{id}',['as'=> 'specific', 'uses' => 'ArmorController@getArmor']);
+    Route::get('edit/{id}',['as'=> 'edit-armor', 'uses' => 'ArmorController@edit']);
+    Route::post('update',['as'=> 'update-armor', 'uses' => 'ArmorController@update']);
 });
 
 Route::group(['prefix' => 'members'],function(){
     Route::get('/', ['as' => 'members', 'uses' => 'MemberController@members']);
     Route::get('/profile/{id}', ['as' => 'getMember', 'uses' => 'MemberController@get']);
-
 });
 
 Route::group(['prefix' => 'admin'],function(){
     Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@overview']);
-//    Route::get('/profile/{id}', ['as' => 'getMember', 'uses' => 'MemberController@get']);
-
+    Route::group(['prefix' => 'approve'],function(){
+        Route::get('/armor/{id}/{approve}', ['as' => 'approve-armor', 'uses' => 'AdminController@armor']);
+    });
 });
