@@ -45,6 +45,7 @@
                     <th>subclasse</th>
                     <th><span class="fa fa-check"></span></th>
                     <th><span class="fa fa-close"></span></th>
+                    <th><span class="fa fa-pencil"></span></th>
                 </tr>
                 @foreach($geweren as $geweer)
                     <tr>

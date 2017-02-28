@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 -- status ( trainee - member - retired) --
-                @if(Auth::user()->function_id == 1)
+                @if(Auth::user()->role == 'admin')
 
                         <div class="form-group {{ $errors->has('aansluiting') ? ' has-error' : '' }}">
                             {{Form::label('aansluiting', 'aansluiting',["class" => "control-label"])}}
