@@ -37,7 +37,7 @@ Route::group(['prefix' => 'members'],function(){
     Route::get('/profile/{id}', ['as' => 'getMember', 'uses' => 'MemberController@get']);
 });
 
-Route::group(['prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'],function(){
     Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@overview']);
     Route::group(['prefix' => 'approve'],function(){
         Route::get('/armor/{id}/{approve}', ['as' => 'approve-armor', 'uses' => 'AdminController@armor']);

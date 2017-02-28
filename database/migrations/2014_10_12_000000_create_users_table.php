@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('nickname');
             $table->string('img');
-            $table->integer('function_id');
+            $table->integer('role');
             $table->date('birthday');
             $table->integer('gsm');
             $table->string('callsign');
