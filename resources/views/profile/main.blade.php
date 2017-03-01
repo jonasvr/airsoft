@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        @if($notifications != null && $user->id == Auth::id())
+        @if(count($notifications) && $user->id == Auth::id())
             <div class="row jumbotron">
                 <table class="table table-striped">
                     <h3>Not approved guns</h3>
