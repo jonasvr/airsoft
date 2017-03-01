@@ -82,9 +82,18 @@
                         @endif
                     </div>
                 </div>
-                -- status ( trainee - member - retired) --
                 @if(Auth::user()->role == 'admin')
-
+                    <div class="form-group {{ $errors->has('status') ? ' has-error' : '' }}">
+                        {{Form::label('classe_id', 'status',["class" => "control-label"])}}
+                        <div class="col-md-offset-1 col-md-11">
+                            {{Form::select('status', $status,$user->status,["class" => "form-control"])}}
+                            @if ($errors->has('status'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('status') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
                         <div class="form-group {{ $errors->has('aansluiting') ? ' has-error' : '' }}">
                             {{Form::label('aansluiting', 'aansluiting',["class" => "control-label"])}}
                             <div class="col-md-offset-1 col-md-11">

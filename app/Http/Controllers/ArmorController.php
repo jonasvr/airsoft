@@ -98,14 +98,25 @@ class ArmorController extends Controller
         $data = $request->all();
         $id = $data['id'];
         unset($data['id']);
+
+        if(Auth::user()->role = 'admin'){
+            $data['checked'] = 2;
+        }else{
+            $data['checked'] = 0;
+        }
+
         $this->geweer->find($id)->update($data);
 
         $data = [
             'armor' => $this->geweer->find($id),
         ];
 
+        if(Auth::user()->role = 'admin'){
+            return redirect('/admin');
+        }else{
+            return view('profile.armor.armor',$data);
+        }
 
-        return view('profile.armor.armor',$data);
     }
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\geweren;
 use App\Http\Requests\editProfileReqeust;
+use App\Status;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -21,14 +22,20 @@ class ProfileController extends Controller
     protected $geweer;
 
     /**
+     * @var Status
+     */
+    protected $status;
+
+    /**
      * ProfileController constructor.
      * @param User $user
      * @param geweren $geweer
      */
-    public function __construct(User $user, geweren $geweer)
+    public function __construct(User $user, geweren $geweer, Status $status)
     {
         $this->user = $user;
         $this->geweer = $geweer;
+        $this->status = $status;
     }
 
     /**
@@ -36,9 +43,9 @@ class ProfileController extends Controller
      */
     public function main()
     {
-        $geweren = $this->geweer->UserAll(Auth::id())->SubClasses()->get();
+        $geweren = $this->geweer->where('user_id',auth::id())->where('checked',1)->get();
         $data = [
-            'geweren' => $geweren,
+            'notifications' => $geweren,
             'user' => Auth::user(),
         ];
 
@@ -51,8 +58,18 @@ class ProfileController extends Controller
     public function getEdit($id)
     {
         $user = $this->user->find($id);
+
+
+        $statussen = $this->status->all();
+        foreach ($statussen as $key => $status){
+            $statussen[$key] = [$status->id => $status->status];
+        }
+
+
+
         $data = [
             'user' => $user,
+            'status' => $statussen,
         ];
         return view('profile.functions.edit', $data);
     }

@@ -2,6 +2,32 @@
 
 @section('content')
     <div class="container">
+        @if($notifications != null && $user->id == Auth::id())
+            <div class="row jumbotron">
+                <table class="table table-striped">
+                    <h3>Not approved guns</h3>
+                    <tbody>
+                    <tr>
+                        <th>name</th>
+                        <th>omschrijving</th>
+                        <th>classe</th>
+                        <th>subclasse</th>
+                        <th><span class="fa fa-pencil"></span></th>
+                    </tr>
+                    @foreach($notifications as $notification)
+                        <tr>
+                            <td>{{$notification->name}}</td>
+                            <td>{{$notification->omschrijving}}</td>
+                            <td>{{$notification->classe->type}}</td>
+                            <td>{{$notification->subclasse->type}}</td>
+                            <td><a href="{{route('edit-armor', [$notification->id])}}"><span class="fa fa-pencil"></span></a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
+            </div>
+        @endif
         <div class="row jumbotron">
             <div class="row">
                 <div class="col-md-3">
@@ -17,6 +43,7 @@
                     <label for="name">naam:</label> <p id="name">{{$user->name}}</p>
                     <label for="nickname">nickname:</label> <p id="nickname">{{$user->nickname}}</p>
                     <label for="callsign">callsign:</label> <p id="callsign">{{$user->callsign}}</p>
+                    <label for="status">status:</label> <p id="status">{{$user->Status[0]->status}}</p>
                     <label for="gsm">phonenumber:</label> <p id="gsm">{{$user->gsm}}</p>
                     <label for="birthday">birthday:</label> <p id="birthday">{{$user->birthday}}</p>
                 </div>
@@ -59,5 +86,4 @@
             </div>
         </div>
     </div>
-
 @endsection

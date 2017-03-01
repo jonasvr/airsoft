@@ -43,9 +43,10 @@ class MemberController extends Controller
 
     public function get($id)
     {
-        $geweren = $this->geweer->UserAll($id)->get();
+//        $geweren = $this->geweer->UserAll($id)->get();
         $data = [
-            'geweren' => $geweren,
+//            'geweren' => $geweren,
+        'notifications' => null,
             'user' => $this->user->where('id',$id)->first(),
         ];
 

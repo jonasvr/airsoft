@@ -61,7 +61,6 @@
                 @endforeach
                 </tbody>
             </table>
-{{--{{dd($geweren)}}--}}
             -- approvel input weapons & profile --
         </div>
     </div>

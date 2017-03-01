@@ -32,4 +32,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\geweren','user_id','id');
     }
+
+    public function Status()
+    {
+        return $this->hasMany('App\Status','id','status');
+    }
+
+    public function statusses()
+    {
+        return $this->belongsToMany('App\Status');
+    }
 }
