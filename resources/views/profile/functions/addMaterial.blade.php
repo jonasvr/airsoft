@@ -49,9 +49,9 @@
                     {{Form::label('omschrijving', 'description',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
                         {{Form::textarea('omschrijving',old('omschrijving'),["class" => "form-control"])}}
-                        @if ($errors->has('name'))
+                        @if ($errors->has('omschrijving'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('omschrijving') }}</strong>
                                     </span>
                         @endif
                     </div>

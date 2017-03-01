@@ -27,8 +27,7 @@
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
-                    -- register mag weg, contact erbij, bruno maakt de gebruikers aan --
+                    <li><a href="{{ url('/contact') }}">Contact</a></li>
                 @else
                     <li><a href="{{ url('/members') }}">Members</a></li>
                     <li class="dropdown">

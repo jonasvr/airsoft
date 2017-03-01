@@ -65,8 +65,6 @@ class ProfileController extends Controller
             $statussen[$key] = [$status->id => $status->status];
         }
 
-
-
         $data = [
             'user' => $user,
             'status' => $statussen,

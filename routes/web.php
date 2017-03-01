@@ -18,6 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/contact', 'ContactController@contact');
+Route::post('/contact/send', ['as' => 'send', 'uses' => 'ContactController@send']);
+
+
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/', ['as' => 'profile', 'uses' => 'ProfileController@main']);
     Route::get('/edit/{id}', ['as' => 'editprofile', 'uses' => 'ProfileController@getEdit']);
