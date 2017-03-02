@@ -29,6 +29,7 @@
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
                 @else
+                    <li><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="{{ url('/members') }}">Members</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -41,6 +42,13 @@
                                     profile
                                 </a>
                             </li>
+                            @if(Auth::user()->role == 'admin')
+                                <li>
+                                    <a href="{{ route('add-blog') }}">
+                                        blog post
+                                    </a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();

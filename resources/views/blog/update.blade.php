@@ -11,18 +11,18 @@
                     </div>
                     <div class="panel-body">
 
-                        {{ Form::open(array('url' => route('create-blog'), 'method' => 'post')) }}
+                        {{ Form::open(array('url' => route('update-blog'), 'method' => 'post')) }}
 
                         <div class="form-group">
                             {{ Form::label('title', 'Titel',['class' => 'text-capitalize']) }}<br>
-                            {{ Form::text('title',old('title'),['class' => 'form-control']) }}
+                            {{ Form::text('title',$blog->title,['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('text', 'text',['class' => 'text-capitalize']) }}
-                            {{ Form::textarea('text',old('title'),['class' => 'form-control']) }}
+                            {{ Form::textarea('text',$blog->text,['class' => 'form-control']) }}
                         </div>
-
+                        {{Form::hidden('id',$blog->id)}}
 
                         {{ Form::submit() }}
                         {{ Form::close() }}

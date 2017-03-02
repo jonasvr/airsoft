@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     protected $fillable = [
-        'id', 'title','text'
+        'id', 'title','text','created_at'
     ];
 
     protected $table = 'blogs';

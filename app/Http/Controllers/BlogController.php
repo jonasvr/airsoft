@@ -22,6 +22,15 @@ class BlogController extends Controller
         $this->blog = $blog;
     }
 
+    public function get()
+    {
+        $data =[
+            'blogs' => $this->blog->OrderBy('id','DESC')->paginate(5),
+        ];
+
+        return view('blog.overview', $data);
+    }
+
     public function add()
     {
         return view('blog.create');
@@ -32,6 +41,22 @@ class BlogController extends Controller
         $data = $request->all();
         $blog = $this->blog->create($data);
 
-        return 'success';
+        return redirect(route('blog'));
+    }
+
+    public function getUpdate($id)
+    {
+
+        $blog = $this->blog->find($id);
+
+        return view('blog.update',['blog'=>$blog]);
+    }
+
+    public function postUpdate(AddBlogRequest $request)
+    {
+        $blog = $this->blog->find($request->id);
+        $blog->update($request->all());
+
+        return redirect(route('blog'));
     }
 }

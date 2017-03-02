@@ -13,3 +13,11 @@
 .height-255{
     max-height: 255px;
 }
+
+.bold{
+    font-weight: bold;
+}
+
+.font-20{
+    font-size: 20px;
+}

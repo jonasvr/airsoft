@@ -49,9 +49,11 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'blog', 'middleware' => 'admin'],function(){
+        Route::get('/', ['as' => 'blog', 'uses' => 'BlogController@get']);
         Route::get('/add', ['as' => 'add-blog', 'uses' => 'BlogController@add']);
         Route::post('/create', ['as' => 'create-blog', 'uses' => 'BlogController@create']);
-
+        Route::get('/update/{id}', ['as' => 'get-update-blog', 'uses' => 'BlogController@getUpdate']);
+        Route::post('/update', ['as' => 'update-blog', 'uses' => 'BlogController@postUpdate']);
     });
 
 
