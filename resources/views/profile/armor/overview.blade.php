@@ -8,8 +8,11 @@
                 <div class="col-md-4">
                     {{$arm->name}} {{$arm->id}} <br>
                     {{ $arm->type }} <br>
-                    <img class="img-responsive" src="/{{ $arm->img }}" alt="">
-
+                    @if( $arm->img != null)
+                        <img style="width: 255px;" src="/armor-pics/{{ $arm->img }}" alt="">
+                    @else
+                        <img style="width: 255px;" src="{{asset('/img/no-pic.png')}}" alt="">
+                    @endif
                 </div>
             @endforeach
         </div>

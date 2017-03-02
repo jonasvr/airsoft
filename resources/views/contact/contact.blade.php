@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row jumbotron">
+            <h2>Contact</h2>
             {{Form::open(array('url' => route('send'), 'method' => 'POST', "class" => "form-horizontal"))}}
             <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                 {{Form::label('email', 'Email',["class" => "control-label"])}}
@@ -28,7 +29,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-1 col-md-11">
-                    <button type="submit" class="btn btn-default">send</button>
+                    <button type="submit" class="btn btn-default">Send</button>
                 </div>
             </div>
             {{Form::close()}}

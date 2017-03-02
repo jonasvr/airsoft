@@ -8,6 +8,7 @@ use App\Status;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
@@ -80,13 +81,22 @@ class ProfileController extends Controller
     {
         $data = $request->all();
         unset($data['_token']);
+
         if (isset($data['img'])){
             $img = $data['img'];
-            unset($data['img']);
+            $img_name = rand(1000,9999). "-" . $img->getClientOriginalName();
+            $data['img'] = $img_name;
+            $img->move('pro-pics/', $img_name);
         }
+
+
         $this->user->where('id',$data['id'])->update($data);
 
-        if(Auth::user()->function_id == 1){
+        if(isset($img)){
+            return view('profile.functions.crop',['image'=>"pro-pics/".$img_name,'redirect'=>'profile']);
+        }
+
+        if(Auth::user()->role == 'admin'){
             $redirect = 'admin';
         }else{
             $redirect = 'profile';

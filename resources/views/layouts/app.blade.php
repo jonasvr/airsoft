@@ -5,11 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('css/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/jquery.Jcrop.css')}}">
-    <link rel="stylesheet" href="{{asset('css/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+    @yield('head')
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -39,6 +38,6 @@
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="/js/jquery.color.js"></script>
-    <script src="/js/jquery.Jcrop.js"></script>
+@yield('scripts')
 </body>
 </html>

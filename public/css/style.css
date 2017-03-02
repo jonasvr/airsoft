@@ -1,3 +1,15 @@
 .margin-bottom-10{
     margin-bottom: 10px;
 }
+
+.max-height-200{
+    max-height:200px;
+}
+
+.max-width-200{
+    max-width:200px;
+}
+
+.height-255{
+    max-height: 255px;
+}

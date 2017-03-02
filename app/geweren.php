@@ -46,6 +46,7 @@ class geweren extends Model
     {
         return $query->join('sub_classes', 'gewerens.subclasse_id','=','sub_classes.id')
             ->join('classes', 'sub_classes.id','=','classes.id')
-            ->where('classes.id','=',$id);
+            ->where('classes.id','=',$id)
+            ->select('gewerens.*','sub_classes.type','classes.type');
     }
 }

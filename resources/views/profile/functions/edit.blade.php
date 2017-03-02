@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-4">
                 <a href="#">
-                    <img src="{{asset('img/no-pic.png')}}" alt="">
+                    <img class="img-responsive" src="{{asset('pro-pics/'.$user->img)}}" alt="">
                 </a>
             </div>
             <div class="col-md-8">

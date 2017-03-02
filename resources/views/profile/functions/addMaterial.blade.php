@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="col-md-offset-2 col-md-8">
-                {{Form::open(array('url' => route('postAdd'), 'method' => 'POST', "class" => "form-horizontal"))}}
+                {{Form::open(array('url' => route('postAdd'), 'method' => 'POST', "class" => "form-horizontal","files"=>true))}}
                 <div class="form-group {{ $errors->has('classe_id') ? ' has-error' : '' }}">
                     {{Form::label('classe_id', 'merk',["class" => "control-label"])}}
                     <div class="col-md-offset-1 col-md-11">
@@ -42,6 +42,17 @@
                             <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group {{ $errors->has('img') ? ' has-error' : '' }}">
+                    {{Form::label('img', 'img',["class" => "control-label"])}}
+                    <div class="col-md-offset-1 col-md-11">
+                        {{Form::file('img',["class" => "form-control"])}}
+                        @if ($errors->has('img'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('img') }}</strong>
+                            </span>
                         @endif
                     </div>
                 </div>

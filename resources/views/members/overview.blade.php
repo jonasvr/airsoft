@@ -11,7 +11,13 @@
             @foreach($users as $index => $user)
                 <a href="{{route('getMember',['id'=>$user['id']])}}" >
                 <div class="col-md-4 text-center margin-bottom-10">
-                    <img src="{{asset("img/no-pic.png")}}" alt=""><br>
+                    @if( $user->img != null)
+                        <img style="width: 255px;" src="{{asset('pro-pics/'.$user->img)}}" alt="">
+                    @else
+                        <img style="width: 255px;" src="{{asset('img/no-pic.png')}}" alt="">
+                    @endif
+
+                    <br>
                     naam: {{ $user->name }} <br>
                     nickname: {{$user->nickname}} <br>
                     callsign: {{$user->callsign}} <br>

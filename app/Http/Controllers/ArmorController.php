@@ -63,7 +63,18 @@ class ArmorController extends Controller
         $data = $request->all();
         unset($data['_token']);
         $data['user_id'] = Auth::id();
+        if (isset($data['img'])){
+            $img = $data['img'];
+            $img_name = rand(1000,9999). "-" . $img->getClientOriginalName();
+            $data['img'] = $img_name;
+            $img->move('armor-pics/', $img_name);
+        }
         $this->geweer->create($data);
+
+        if(isset($img)){
+            return view('profile.functions.crop',['image'=>"armor-pics/".$img_name,'redirect'=>'profile']);
+        }
+
         return redirect()->route('profile')->with('success', 'Armor updated!');
     }
 
@@ -71,9 +82,11 @@ class ArmorController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getArmor($id)
+    public function getArmor($id,$user_id)
     {
-        $armor = $this->geweer->ArmorType($id)->get();
+        $armor = $this->geweer->ArmorType($id)
+                            ->where('user_id',$user_id)
+                            ->get();
         $data = [
           'armor' => $armor
         ];
@@ -99,6 +112,13 @@ class ArmorController extends Controller
         $id = $data['id'];
         unset($data['id']);
 
+        if (isset($data['img'])){
+            $img = $data['img'];
+            $img_name = rand(1000,9999). "-" . $img->getClientOriginalName();
+            $data['img'] = $img_name;
+            $img->move('armor-pics/', $img_name);
+        }
+
         if(Auth::user()->role = 'admin'){
             $data['checked'] = 2;
         }else{
@@ -106,6 +126,10 @@ class ArmorController extends Controller
         }
 
         $this->geweer->find($id)->update($data);
+
+        if(isset($img)){
+            return view('profile.functions.crop',['image'=>"armor-pics/".$img_name,'redirect'=>'profile']);
+        }
 
         $data = [
             'armor' => $this->geweer->find($id),

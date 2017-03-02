@@ -38,13 +38,16 @@
                         </a>
                     @endif
                     Info</h2>
-
-                    <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
-                    <label for="name">naam:</label> <p id="name">{{$user->name}}</p>
+                    @if( $user->img != null)
+                        <img class="img-responsive" src="{{asset('pro-pics/'.$user->img)}}" alt="">
+                    @else
+                        <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
+                    @endif
+                        <label for="name">naam:</label> <p id="name">{{$user->name}}</p>
                     <label for="nickname">nickname:</label> <p id="nickname">{{$user->nickname}}</p>
                     <label for="callsign">callsign:</label> <p id="callsign">{{$user->callsign}}</p>
                     <label for="status">status:</label> <p id="status">{{$user->Status[0]->status}}</p>
-                    <label for="gsm">phonenumber:</label> <p id="gsm">{{$user->gsm}}</p>
+                    <label for="gsm">phonenumber:</label> <p id="gsm">+32{{$user->gsm}}</p>
                     <label for="birthday">birthday:</label> <p id="birthday">{{$user->birthday}}</p>
                 </div>
                 <div class="col-md-offset-1 col-md-7">
@@ -56,27 +59,27 @@
                     </h2>
                     <div class="row">
                         <div class="col-md-4 margin-bottom-10">
-                            <a href="{{route('specific', ['id' => 1])}}">
+                            <a href="{{route('specific', ['id' => 1,'user_id' => $user->id])}}">
                                 <img class="img-responsive" src="{{asset('img/gear-logo/helmet.jpg')}}" alt="">
                             </a>
                         </div>
                         <div class="col-md-4 margin-bottom-10">
-                            <a href="{{route('specific', ['id' => 2])}}">
+                            <a href="{{route('specific', ['id' => 2,'user_id' => $user->id])}}">
                                 <img class="img-responsive" src="{{asset('img/gear-logo/body.jpg')}}" alt="">
                             </a>
                         </div>
                         <div class="col-md-4 margin-bottom-10">
-                            <a href="{{route('specific', ['id' => 3])}}">
+                            <a href="{{route('specific', ['id' => 3,'user_id' => $user->id])}}">
                                 <img class="img-responsive" src="{{asset('img/gear-logo/weapon.jpg')}}" alt="">
                             </a>
                         </div>
                         <div class="col-md-offset-2 col-md-4 margin-bottom-10">
-                            <a href="{{route('specific', ['id' => 4])}}">
+                            <a href="{{route('specific', ['id' => 4,'user_id' => $user->id])}}">
                                 <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
                             </a>
                         </div>
                         <div class="col-md-4 margin-bottom-10">
-                            <a href="{{route('specific', ['id' => 5])}}">
+                            <a href="{{route('specific', ['id' => 5,'user_id' => $user->id])}}">
                                 <img class="img-responsive" src="{{asset('img/no-pic.png')}}" alt="">
                             </a>
                         </div>
