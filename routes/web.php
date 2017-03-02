@@ -48,10 +48,13 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
+    Route::group(['prefix' => 'blog', 'middleware' => 'admin'],function(){
+        Route::get('/add', ['as' => 'add-blog', 'uses' => 'BlogController@add']);
+        Route::post('/create', ['as' => 'create-blog', 'uses' => 'BlogController@create']);
 
-    Route::get('/test',function(){
-        return view('test');
     });
+
+
     Route::post('/jcrop', 'ImageController@crop');
 
 
