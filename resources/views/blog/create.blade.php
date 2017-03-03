@@ -20,7 +20,7 @@
 
                         <div class="form-group">
                             {{ Form::label('text', 'text',['class' => 'text-capitalize']) }}
-                            {{ Form::textarea('text',old('title'),['class' => 'form-control']) }}
+                            {{ Form::textarea('text',old('title'),['class' => 'form-control','id'=>'blog']) }}
                         </div>
 
 
@@ -34,6 +34,17 @@
 @endsection
 
 @section('scripts')
-    <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-    <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#blog').summernote({
+                height:300,
+            });
+        });
+    </script>
+
+    {{--<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>--}}
+    {{--<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>--}}
 @endsection
