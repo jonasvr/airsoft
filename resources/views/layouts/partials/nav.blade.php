@@ -25,12 +25,30 @@
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ App::getLocale() }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ route('change-language','nl') }}">
+                                nl
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('change-language','en') }}">
+                                en
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
                 @else
                     <li><a href="{{ url('/blog') }}">Blog</a></li>
-                    <li><a href="{{ url('/members') }}">Members</a></li>
+                    <li><a href="{{ route('members') }}">Members</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::user()->nickname }} <span class="caret"></span>

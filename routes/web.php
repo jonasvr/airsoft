@@ -20,9 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/contact', 'ContactController@contact');
 Route::post('/contact/send', ['as' => 'send', 'uses' => 'ContactController@send']);
+Route::get('/language/{lg}', ['as' => 'change-language', 'uses' => 'LanguageController@change']);
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::group(['prefix' => 'profile'], function () {
+    Route::group(['prefix' => App::getLocale()], function () {
+
+        Route::group(['prefix' => 'profile'], function () {
         Route::get('/', ['as' => 'profile', 'uses' => 'ProfileController@main']);
         Route::get('/edit/{id}', ['as' => 'editprofile', 'uses' => 'ProfileController@getEdit']);
         Route::post('/postEdit', ['as' => 'postedit', 'uses' => 'ProfileController@postEdit']);
@@ -58,6 +61,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::post('/jcrop', 'ImageController@crop');
-
-
+    });
 });

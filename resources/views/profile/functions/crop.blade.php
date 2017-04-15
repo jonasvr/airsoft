@@ -7,7 +7,7 @@
 @section('content')
 
     <div>
-        <img src="{{asset($image)}}" id='image' alt="">
+        <img src="{{asset($img)}}" id='image' alt="">
     </div>
     {{Form::open(array('url' => '/jcrop', 'method' => 'POST', "class" => "form-horizontal"))}}
     <?= Form::hidden('image', $image) ?>
